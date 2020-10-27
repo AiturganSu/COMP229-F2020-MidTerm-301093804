@@ -5,22 +5,31 @@ let mongoose = require('mongoose');
 
 // define the book model
 let book = require('../models/books');
+const books = require('../models/books');
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
-  // find all books in the books collection
-  book.find( (err, books) => {
-    if (err) {
-      return console.error(err);
-    }
-    else {
-      res.render('books/index', {
-        title: 'Books',
-        books: books
-      });
-    }
-  });
+    // find all books in the books collection
+    book.find((err, books) => {
+        if (err) {
+            return console.error(err);
+        } else {
+            res.render('books/index', {
+                title: 'Books',
+                books: books
+            });
+        }
+    });
 
+});
+
+//////////////////////////////
+//GET ADD BOOK BUTTON TO WORK
+router.get('/details', (req, res, next) => {
+    res.render('books/details', {
+        title: 'details',
+        books: 'Books'
+    });
 });
 
 //  GET the Book Details page in order to add a new Book
@@ -29,6 +38,8 @@ router.get('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+
+
 
 });
 

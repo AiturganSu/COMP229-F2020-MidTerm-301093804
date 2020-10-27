@@ -8,10 +8,14 @@ let book = require('../models/books');
 
 /* GET home page. wildcard */
 router.get('/', (req, res, next) => {
-  res.render('content/index', {
-    title: 'Home',
-    books: ''
-   });
+    res.render('content/index', {
+        title: 'Home',
+        books: ''
+    });
 });
+
+/*router.get('./details', function(req, res, next) {
+    res.render('details', { title: 'details' });
+});*/
 
 module.exports = router;
