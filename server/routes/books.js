@@ -7,6 +7,8 @@ let mongoose = require('mongoose');
 let book = require('../models/books');
 const books = require('../models/books');
 
+
+
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
     // find all books in the books collection
@@ -25,10 +27,10 @@ router.get('/', (req, res, next) => {
 
 //////////////////////////////
 //GET ADD BOOK BUTTON TO WORK
-router.get('/details', (req, res, next) => {
+router.get('/add', (req, res, next) => {
     res.render('books/details', {
-        title: 'details',
-        books: 'Books'
+        title: 'Add Books',
+        books: ''
     });
 });
 
@@ -38,7 +40,7 @@ router.get('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
-
+    res.render('books/details', { title: 'Add Books' });
 
 
 });
@@ -49,7 +51,23 @@ router.post('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    let books = book({
+        "Title": req.body.title,
+        "Price": req.body.price,
+        "Author": req.body.author,
+        "Genre": req.body.genre
+    });
 
+    book.create(books, (err, book) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+    })
+
+    console.log(books);
+
+    res.redirect('/books');
 });
 
 // GET the Book Details page in order to edit an existing Book
