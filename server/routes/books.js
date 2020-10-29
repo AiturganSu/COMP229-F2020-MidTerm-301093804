@@ -1,3 +1,9 @@
+//Author Name: Aiturgan Suiunbai kyzy
+//StudentId : 301093804
+//WebApp Name: comp229-f2020-midterm.herokuapp.com
+//File Name: COMP229-F2020-MidTerm-301093804
+
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();
