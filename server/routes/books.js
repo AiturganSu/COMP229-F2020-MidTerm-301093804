@@ -55,13 +55,15 @@ router.get('/add', (req, res, next) => {
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/add', (req, res, next) => {
 
-    //instantiate a new book
+    //instantiate a new book object with the help of Model book,
+    //catching displaying errors if there are any,if no error than redirecting to /books page
     let books = book({
         "Title": req.body.title,
         "Price": req.body.price,
         "Author": req.body.author,
         "Genre": req.body.genre
     });
+
 
     book.create(books, (err, book) => {
         if (err) {
@@ -80,7 +82,8 @@ router.get('/edit/:id', (req, res, next) => {
 
     let id = req.params.id;
 
-    //pass id to database
+    //pass id to database by finding id with findById function and store it in bookToEdit
+
     book.findById(id, (err, bookToEdit) => {
         if (err) {
             console.log(err);
@@ -98,6 +101,8 @@ router.post('/edit/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    //require id to find the right book, and editing a book with the help og book model
+    //updating book, catching displaying errors if there are any,if no error than redirecting to /books page
     let id = req.params.id;
 
     let updatedbooks = book({
@@ -124,6 +129,9 @@ router.get('/delete/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+
+    //require id to delete the right book, removing it
+    //catching and displaying any errors if there are, if no error delete nad process back to /books page  
     let id = req.params.id;
 
     book.remove({ _id: id }, (err) => {
